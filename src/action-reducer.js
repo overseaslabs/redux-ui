@@ -120,7 +120,7 @@ export default function reducer(state = defaultState, action) {
         //       top-level component?
         const { path, func } = r;
         const newState = func(mut.getIn(path), action);
-        if (newState === undefined) {
+        if (newState === undefined && mut.getIn(path) !== undefined) {
           throw new Error(`Your custom UI reducer at path ${path.join('.')} must return some state`);
         }
         mut.setIn(path, newState);
